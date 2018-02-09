@@ -1,0 +1,15 @@
+cmake_minimum_required (VERSION 3.0)
+include (cmake/CMakeLib.cmake)
+
+package (@CMAKEPROJGEN_PROJECTNAME@	VERSION 0.0.0 
+									OUTDIR ${CMAKE_BINARY_DIR}/@CMAKEPROJGEN_OUTDIR@
+									EXPORT_NAME @CMAKEPROJGEN_EXPORTNAME@)
+
+	contacts (
+		AUTHOR  "@CMAKEPROJGEN_AUTHORNAME@"
+		CONTACT "@CMAKEPROJGEN_CONTACTS@")
+	
+	subdirectories (SRCDIR ${@CMAKEPROJGEN_PROJECTNAME@_PACKAGE_SRCDIR}/source
+		source)
+		
+endpackage ()
