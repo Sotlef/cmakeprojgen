@@ -15,11 +15,18 @@ elseif ("x${CMAKEPROJGEN_ROOTDIR}" STREQUAL "x")
 	message (FATAL_ERROR "Enter 'Project Directory'")
 endif ()
 
+string (MAKE_C_IDENTIFIER ${CMAKEPROJGEN_PROJECTNAME} TEMPPROJNAME)
+if (${CMAKEPROJGEN_PROJECTNAME} STREQUAL ${TEMPPROJNAME})
+	string (TOUPPER ${TEMPPROJNAME} CMAKEPROJGEN_PROJECTPREFIX)
+else ()
+	message (FATAL_ERROR "Invalid Project Name: ${CMAKEPROJGEN_PROJECTNAME}")
+endif ()
+
 file (MAKE_DIRECTORY ${CMAKEPROJGEN_ROOTDIR})
 configure_file (
 	"source/CMakeLib.cmake.in" 
 	"${CMAKEPROJGEN_ROOTDIR}/cmake/CMakeLib.cmake" @ONLY)
 configure_file (
 	"source/CMakeLists.txt.in"
-	"${CMAKEPROJGEN_ROOTDIR}/CMakeLists.txt")
+	"${CMAKEPROJGEN_ROOTDIR}/CMakeLists.txt" @ONLY)
 
